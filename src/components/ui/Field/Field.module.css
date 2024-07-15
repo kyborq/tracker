@@ -1,0 +1,22 @@
+.Field {
+  display: flex;
+  flex: 1;
+  background-color: #e9ecef;
+  border-radius: 16px;
+  align-items: center;
+  padding: 0 12px;
+  gap: 8px;
+}
+
+.Input {
+  border: none;
+  outline: none;
+  padding: 0;
+  background-color: transparent;
+  font-size: 14px;
+  flex: 1;
+}
+
+.Input::placeholder {
+  color: #adb5bd;
+}

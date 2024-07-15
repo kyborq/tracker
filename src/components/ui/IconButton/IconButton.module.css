@@ -1,0 +1,19 @@
+.IconButton {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 24px;
+  transition: 250ms;
+}
+
+.IconButton:active {
+  transform: scale(0.95);
+  transition: 250ms;
+}
