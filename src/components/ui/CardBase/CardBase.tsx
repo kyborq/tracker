@@ -11,8 +11,8 @@ export const CardBase = ({ width, children }: Props) => {
   return (
     <AnimatePresence>
       <motion.div
-        initial={{ opacity: 0, scale: 0.5, height: 0 }}
-        animate={{ opacity: 1, scale: 1, height: "auto" }}
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
         className={styles.CardBase}
         style={{ width }}
       >

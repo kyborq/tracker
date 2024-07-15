@@ -1,8 +1,9 @@
 import { CardBase, Field, IconButton } from "@/components/ui";
-import { PauseIcon, PlayIcon, TaskIcon } from "./assets/icons";
+import { DownloadIcon, PauseIcon, PlayIcon, TaskIcon } from "./assets/icons";
 import { useTime } from "./hooks/useTime";
 import {
   calculateTotalDuration,
+  generatePDF,
   groupTrackingsByDateTime,
   useTracker,
 } from "./store/useTracker";
@@ -33,10 +34,15 @@ export const App = () => {
 
   return (
     <>
+      {/* <IconButton
+        icon={<DownloadIcon />}
+        onClick={() => generatePDF(trackings)}
+      /> */}
       <CardBase width={512}>
         <Field
           icon={<TaskIcon />}
           placeholder="Задача..."
+          autoComplete="off"
           {...register("report")}
         />
         <div
@@ -70,6 +76,10 @@ export const App = () => {
             <div style={{ padding: 16 }}>
               <strong>
                 {dateTimeKey} {formatDuration(calculateTotalDuration(tracks))}
+                <IconButton
+                  icon={<DownloadIcon />}
+                  onClick={() => generatePDF(tracks)}
+                />
               </strong>
               {tracks.map((track, i) => (
                 <div key={i}>
