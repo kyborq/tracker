@@ -1,0 +1,13 @@
+body {
+  font-family: "Montserrat Variable", sans-serif;
+  background-color: #f8f9fa;
+  color: #212529;
+  font-size: 14px;
+  font-weight: 500;
+  user-select: none;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+}
