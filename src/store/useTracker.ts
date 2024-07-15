@@ -10,13 +10,14 @@ export type TTracking = {
   start: Date | null;
   end: Date | null;
   report?: string;
+  project?: string;
 };
 
 interface ITrackerStore {
   current: TTracking;
   trackings: TTracking[];
   start: () => void;
-  stop: (report?: string) => void;
+  stop: (report?: string, project?: string) => void;
 }
 
 export const useTracker = create(
@@ -34,12 +35,13 @@ export const useTracker = create(
             end: null,
           },
         })),
-      stop: (report?: string) =>
+      stop: (report?: string, project?: string) =>
         set((state) => {
           const completedTracking = {
             ...state.current,
             end: new Date(),
             report,
+            project,
           };
 
           return {

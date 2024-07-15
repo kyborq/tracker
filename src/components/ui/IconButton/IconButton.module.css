@@ -1,6 +1,4 @@
 .IconButton {
-  width: 48px;
-  height: 48px;
   display: flex;
   padding: 0;
   align-items: center;
@@ -16,4 +14,9 @@
 .IconButton:active {
   transform: scale(0.95);
   transition: 250ms;
+}
+
+.IconButton:not(.Inline) {
+  width: 48px;
+  height: 48px;
 }

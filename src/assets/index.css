@@ -13,4 +13,5 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 128px 0;
 }

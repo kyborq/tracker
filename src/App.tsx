@@ -1,16 +1,12 @@
 import { CardBase, Field, IconButton } from "@/components/ui";
-import { DownloadIcon, PauseIcon, PlayIcon, TaskIcon } from "./assets/icons";
+import { PauseIcon, PlayIcon, TaskIcon } from "./assets/icons";
 import { useTime } from "./hooks/useTime";
-import {
-  calculateTotalDuration,
-  generatePDF,
-  groupTrackingsByDateTime,
-  useTracker,
-} from "./store/useTracker";
+import { groupTrackingsByDateTime, useTracker } from "./store/useTracker";
 import { formatDuration, timeDiff } from "./utils/times";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
 import { shortString } from "./utils/strings";
+import { Trackings } from "./components/core";
 
 export const App = () => {
   const { register, watch, reset } = useForm<{ report: string }>({
@@ -34,10 +30,6 @@ export const App = () => {
 
   return (
     <>
-      {/* <IconButton
-        icon={<DownloadIcon />}
-        onClick={() => generatePDF(trackings)}
-      /> */}
       <CardBase width={512}>
         <Field
           icon={<TaskIcon />}
@@ -70,25 +62,9 @@ export const App = () => {
           />
         </div>
       </CardBase>
-      <div style={{ width: 512, marginTop: 16 }}>
+      <div style={{ width: 512, marginTop: 16, gap: 8 }}>
         {Object.entries(dateTracks).map(([dateTimeKey, tracks]) => (
-          <CardBase key={dateTimeKey}>
-            <div style={{ padding: 16 }}>
-              <strong>
-                {dateTimeKey} {formatDuration(calculateTotalDuration(tracks))}
-                <IconButton
-                  icon={<DownloadIcon />}
-                  onClick={() => generatePDF(tracks)}
-                />
-              </strong>
-              {tracks.map((track, i) => (
-                <div key={i}>
-                  {track.report} -{" "}
-                  {formatDuration(timeDiff(track.start!, track.end!))}
-                </div>
-              ))}
-            </div>
-          </CardBase>
+          <Trackings key={dateTimeKey} dateTime={dateTimeKey} tracks={tracks} />
         ))}
       </div>
     </>

@@ -1,0 +1,38 @@
+.TrackingsContainer {
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.TrackingsDate {
+  font-weight: 700;
+}
+
+.TrackingsDurationContainer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.TrackingsDuration {
+  font-weight: 700;
+}
+
+.TrackingsList {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.TrackItem {
+  border-radius: 16px;
+  padding: 12px;
+  background: #e9ecef;
+  display: flex;
+  justify-content: space-between;
+}
+
+.TrackDuration {
+  width: 64px;
+}
