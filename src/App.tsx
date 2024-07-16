@@ -1,12 +1,13 @@
-import { CardBase, Field, IconButton } from "@/components/ui";
-import { PauseIcon, PlayIcon, TaskIcon } from "./assets/icons";
-import { useTime } from "./hooks/useTime";
-import { groupTrackingsByDateTime, useTracker } from "./store/useTracker";
-import { formatDuration, timeDiff } from "./utils/times";
-import { useForm } from "react-hook-form";
+import { CardBase, Field } from "@/components/ui";
 import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { TaskIcon } from "./assets/icons";
+import { Timer, Trackings } from "./components/core";
+import { useTime } from "./hooks/useTime";
+import { useTracker } from "./store/useTracker";
 import { shortString } from "./utils/strings";
-import { Trackings } from "./components/core";
+import { formatDuration, timeDiff } from "./utils/times";
+import { groupTrackings } from "./actions/groupTrackings";
 
 export const App = () => {
   const { register, watch, reset } = useForm<{ report: string }>({
@@ -16,15 +17,15 @@ export const App = () => {
   const time = useTime();
 
   const report = watch("report");
-  const dateTracks = groupTrackingsByDateTime(trackings);
+  const dateTracks = groupTrackings(trackings);
 
   const currentDuration = formatDuration(timeDiff(current.start || time, time));
 
   useEffect(() => {
     if (current.start) {
-      document.title = `${shortString(report, 14) || "Tracking"} ${currentDuration}`;
+      document.title = `${currentDuration} - ${shortString(report, 14) || "Tracking"}`;
     } else {
-      document.title = "Tracker";
+      document.title = "Учёт времени";
     }
   }, [time, current, currentDuration, report]);
 
@@ -37,30 +38,17 @@ export const App = () => {
           autoComplete="off"
           {...register("report")}
         />
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            background: "#e9ecef",
-            borderRadius: 16,
-            paddingLeft: 16,
+        <Timer
+          time={time}
+          current={current}
+          onStart={() => {
+            start();
           }}
-        >
-          <span style={{ width: 64, fontWeight: 700 }}>
-            {formatDuration(timeDiff(current.start || time, time))}
-          </span>
-          <IconButton
-            icon={current.start ? <PauseIcon /> : <PlayIcon />}
-            onClick={() => {
-              if (current.start) {
-                stop(report);
-                reset();
-              } else {
-                start();
-              }
-            }}
-          />
-        </div>
+          onStop={() => {
+            stop(report);
+            reset();
+          }}
+        />
       </CardBase>
       <div style={{ width: 512, marginTop: 16, gap: 8 }}>
         {Object.entries(dateTracks).map(([dateTimeKey, tracks]) => (

@@ -1,0 +1,9 @@
+.Timer {
+  display: flex;
+  align-items: center;
+  background: #e9ecef;
+  border-radius: 16px;
+  padding-left: 16px;
+  font-family: monospace;
+  font-weight: bold;
+}
