@@ -24,15 +24,3 @@
   flex-direction: column;
   gap: 2px;
 }
-
-.TrackItem {
-  border-radius: 16px;
-  padding: 12px;
-  background: #e9ecef;
-  display: flex;
-  justify-content: space-between;
-}
-
-.TrackDuration {
-  width: 64px;
-}

@@ -1,0 +1,18 @@
+.TrackItem {
+  border-radius: 16px;
+  padding: 12px 16px;
+  background: #e9ecef;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+.TrackDuration {
+  font-family: "JetBrains Mono", monospace;
+}
+
+.Text {
+  flex: 1;
+  font-weight: bold;
+}

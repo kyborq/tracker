@@ -4,11 +4,13 @@ import {
   calculateTotalDuration,
   generatePDF,
   TTracking,
+  useTracker,
 } from "@/store/useTracker";
 import { formatDuration, timeDiff } from "@/utils/times";
 import { format, parse } from "date-fns";
 
 import styles from "./Trackings.module.css";
+import { Task } from "../Task";
 
 type Props = {
   dateTime: string;
@@ -16,6 +18,8 @@ type Props = {
 };
 
 export const Trackings = ({ dateTime, tracks }: Props) => {
+  const { deleteTrack } = useTracker();
+
   const date = parse(dateTime, "yyyy-MM-dd", new Date());
   const formatted = format(date, "yyyy.MM.dd");
   const totalDuration = calculateTotalDuration(tracks);
@@ -38,17 +42,9 @@ export const Trackings = ({ dateTime, tracks }: Props) => {
       </div>
 
       <div className={styles.TrackingsList}>
-        {tracks.map((track, i) => {
-          const diff = timeDiff(track.start!, track.end!);
-          const duration = formatDuration(diff);
-
-          return (
-            <div key={i} className={styles.TrackItem}>
-              <span>{track.report}</span>
-              <span className={styles.TrackDuration}>{duration}</span>
-            </div>
-          );
-        })}
+        {tracks.map((track, i) => (
+          <Task key={i} track={track} onDelete={deleteTrack} />
+        ))}
       </div>
     </CardBase>
   );
