@@ -6,7 +6,7 @@ import {
   TTracking,
   useTracker,
 } from "@/store/useTracker";
-import { formatDuration, timeDiff } from "@/utils/times";
+import { formatDuration } from "@/utils/times";
 import { format, parse } from "date-fns";
 
 import styles from "./Trackings.module.css";
