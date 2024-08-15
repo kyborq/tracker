@@ -1,8 +1,16 @@
-import { Duration, interval, intervalToDuration, format } from "date-fns";
+import {
+  Duration,
+  interval,
+  intervalToDuration,
+  format,
+  setHours,
+  setMinutes,
+} from "date-fns";
+import {} from "date-fns";
 
 export const formatDuration = (
   duration: Duration,
-  disableSeconds?: boolean,
+  disableSeconds?: boolean
 ) => {
   const pad = (num?: number) => String(num || 0).padStart(2, "0");
 
@@ -23,4 +31,10 @@ export const timeDiff = (date1: Date, date2: Date) => {
 
 export const formatTime = (date: Date) => {
   return format(date, "HH:mm");
+};
+
+export const timeStringToDate = (date: Date, time: string) => {
+  const [hours, minutes] = time.split(":").map(Number);
+  const today = new Date(date);
+  return setMinutes(setHours(today, hours), minutes);
 };

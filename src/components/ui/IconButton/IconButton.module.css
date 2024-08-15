@@ -9,6 +9,7 @@
   cursor: pointer;
   border-radius: 24px;
   transition: 250ms;
+  flex: none;
 }
 
 .IconButton:active {

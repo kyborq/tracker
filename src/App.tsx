@@ -23,7 +23,9 @@ export const App = () => {
 
   useEffect(() => {
     if (current.start) {
-      document.title = `${currentDuration} - ${shortString(report, 14) || "Tracking"}`;
+      document.title = `${currentDuration} - ${
+        shortString(report, 14) || "Tracking"
+      }`;
     } else {
       document.title = "Учёт времени";
     }

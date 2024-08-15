@@ -1,11 +1,10 @@
 .CardBase {
   background-color: #ffffff;
   border-radius: 20px;
-  box-shadow:
-    0 8px 48px rgba(33, 37, 41, 0.05),
-    0 0 8px rgba(33, 37, 41, 0.025);
+  box-shadow: 0 8px 48px rgba(33, 37, 41, 0.05), 0 0 8px rgba(33, 37, 41, 0.025);
   display: flex;
   padding: 4px;
   gap: 4px;
   overflow: hidden;
+  margin-bottom: 8px;
 }

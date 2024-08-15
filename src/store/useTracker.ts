@@ -16,6 +16,7 @@ interface ITrackerStore {
   start: () => void;
   stop: (report?: string, project?: string) => void;
   deleteTrack: (trackId: string) => void;
+  updateTrack: (track: TTracking) => void;
 }
 
 export const useTracker = create(
@@ -53,11 +54,18 @@ export const useTracker = create(
             },
           };
         }),
+      updateTrack: (track: TTracking) => {
+        set((state) => ({
+          trackings: state.trackings.map((t) =>
+            t.id === track.id ? track : t
+          ),
+        }));
+      },
       deleteTrack: (trackId: string) =>
         set((state) => ({
           trackings: state.trackings.filter((track) => trackId !== track.id),
         })),
     }),
-    { name: "trackings" },
-  ),
+    { name: "trackings" }
+  )
 );

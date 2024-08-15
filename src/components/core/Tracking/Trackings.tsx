@@ -15,7 +15,7 @@ type Props = {
 };
 
 export const Trackings = ({ dateTime, tracks }: Props) => {
-  const { deleteTrack } = useTracker();
+  const { deleteTrack, updateTrack } = useTracker();
 
   const date = parse(dateTime, "yyyy-MM-dd", new Date());
   const formatted = format(date, "yyyy.MM.dd");
@@ -40,7 +40,12 @@ export const Trackings = ({ dateTime, tracks }: Props) => {
 
       <div className={styles.TrackingsList}>
         {tracks.map((track, i) => (
-          <Task key={i} track={track} onDelete={deleteTrack} />
+          <Task
+            key={i}
+            track={track}
+            onDelete={deleteTrack}
+            onUpdate={updateTrack}
+          />
         ))}
       </div>
     </CardBase>
